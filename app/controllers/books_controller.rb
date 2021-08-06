@@ -13,6 +13,13 @@ class BooksController < ApplicationController
        end
     end
 
+    def destroy
+      Book.find(params[:id]).destroy!
+      head :no_content 
+      rescue ActiveRecord::RecordNotDestroyed 
+        render json: {}
+    end
+
     private 
 
     def book_params
