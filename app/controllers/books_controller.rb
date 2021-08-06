@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+    rescue_from ActiveRecord::RecordNotDestroyed
     def index 
       render json: Book.all 
     end 
@@ -17,7 +18,7 @@ class BooksController < ApplicationController
       Book.find(params[:id]).destroy!
       head :no_content 
       rescue ActiveRecord::RecordNotDestroyed 
-        render json: {}
+        render json: {}, status: :unproccessable_entity
     end
 
     private 
