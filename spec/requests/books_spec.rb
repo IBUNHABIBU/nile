@@ -12,9 +12,10 @@ describe 'Books API', type: :request do
     end
 
     it 'returns number of book' do 
+        
+        FactoryBot.create(:book, title: "Jon oke", author: "Majuto")
+        FactoryBot.create(:book, title: "Manjegeka", author: "Imma")
         get '/api/v1/books'
-        FactoryBoat.create(:Book, title: "Jon oke", author: "Majuto")
-        FactoryBoat.create(:Book, title: "Manjegeka", author: "Imma")
         expect(JSON.parse(response.body).size).to eq(2)
     end
 end
