@@ -4,6 +4,11 @@ class BooksController < ApplicationController
     end 
     
     def create
-       Book.create(title: "Jenefa", author: "deo")
+       book = Book.new(title: params[:title], author: params[:author])
+       if book.save 
+        render json: book, status: :created 
+       else 
+        render json: book.errors, status: :unproccessable_entity 
+       end
     end
 end
