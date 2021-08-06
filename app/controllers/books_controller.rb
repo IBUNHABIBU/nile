@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-    rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
     def index 
       render json: Book.all 
     end 
@@ -22,7 +21,7 @@ class BooksController < ApplicationController
     private 
 
     def book_params
-        params.require(:book).permit(:title, :author)
+      params.require(:book).permit(:title, :author)
     end
 
     def not_destroyed
