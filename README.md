@@ -1,24 +1,14 @@
-# README
+# Useful tips and commands
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`rails g migration AddAuthorToBooks author:references  `
 
-Things you may want to cover:
+got to the add_author_to_books table and remove the null and foreign key
 
-* Ruby version
+` add_reference :books, :author, null: false, foreign_key: true`
 
-* System dependencies
+How to remove column to a table 
 
-* Configuration
+`rails g migration RemoveAuthorFromBooks author:string`
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
