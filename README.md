@@ -10,5 +10,5 @@ How to remove column to a table
 
 `rails g migration RemoveAuthorFromBooks author:string`
 
-
+I have learnt new concept which is controller representers
 
