@@ -13,7 +13,6 @@ describe 'Books API', type: :request do
             expect(response.body.size).to eq(2)
         end
         it 'returns number of book' do
-        
             FactoryBot.create(:book, title: "Jon oke", author: "Majuto")
             FactoryBot.create(:book, title: "Manjegeka", author: "Imma")
             get '/api/v1/books'
@@ -42,10 +41,10 @@ describe 'Books API', type: :request do
             puts "In this test the id #{book.id} is always generated randomly  at every test" 
         end
 
-        it 'should count no of books book' do
-            expect{
-              post '/api/v1/books', params: {book: { title: "Janware", author: "Denis"} }
-            }.to change { Book.count }.from(0).to(1)
-        end
+        # it 'should count no of books book' do
+        #     expect{
+        #         delete "/api/v1/books/#{book.id}"
+        #     }.to change { Book.count }.from(1).to(0)
+        # end
     end
 end
