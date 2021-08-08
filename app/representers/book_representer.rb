@@ -4,13 +4,11 @@ class BookRepresenter
  end
 
  def as_json 
-     book.map do |book|
-         {
-            id: book.id,
-            title: book.title,
-            author_name: author_name(book)
-         }
-     end
+   {
+     id: book.id,
+     title: book.title,
+     author_name: author_name(book)
+   }
  end
  private 
 
