@@ -13,8 +13,9 @@ describe 'Books API', type: :request do
             expect(response.body.size).to eq(2)
         end
         it 'returns number of book' do
-            FactoryBot.create(:book, title: "Jon oke", author: "Majuto")
-            FactoryBot.create(:book, title: "Manjegeka", author: "Imma")
+            FactoryBot.create(:book, title: "Jon oke")
+            FactoryBot.create(:book, title: "Manjegeka")
+            FactoryBot.create(:author,first_name: "Manjegeka", last_name: "Manjegeka")
             get '/api/v1/books'
             expect(JSON.parse(response.body).size).to eq(2)
         end
