@@ -1,10 +1,10 @@
-class BooksRepresenter 
- def initialize(books)
-     @books = books 
+class BookRepresenter 
+ def initialize(book)
+     @book = book 
  end
 
  def as_json 
-     books.map do |book|
+     book.map do |book|
          {
             id: book.id,
             title: book.title,
@@ -14,7 +14,7 @@ class BooksRepresenter
  end
  private 
 
- attr_reader :books 
+ attr_reader :book 
 
  def author_name(book)
     "#{book.author.first_name} #{book.author.last_name}" 
