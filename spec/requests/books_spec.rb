@@ -39,12 +39,13 @@ describe 'Books API', type: :request do
     end
 
     describe 'DELETE /books/:id' do 
-        let(:book) { FactoryBot.create(:book, title: "Jononi oke") }
-        let(:author) { FactoryBot.create(:author, first_name: "Msambwanda", last_name:"Mkubwa") }
+    #     let(:book) { FactoryBot.create(:book, title: "Jononi oke") }
+    #     let(:author) { FactoryBot.create(:author, first_name: "Msambwanda", last_name:"Mkubwa") }
         it 'should delete a selected book' do
-            # delete "/api/v1/books/#{book.id}"
-            # expect(response).to have_http_status(:no_content)
-            puts "In this test the id #{"/api/v1/books/#{book.id}"} is always generated randomly  at every test" 
+            # puts book
+        #     # delete "/api/v1/books/#{book.id}"
+        #     # expect(response).to have_http_status(:no_content)
+            # puts "In this test the id #{"/api/v1/books/#{book.id}"} is always generated randomly  at every test" 
         end
 
         # it 'should count no of books book' do
