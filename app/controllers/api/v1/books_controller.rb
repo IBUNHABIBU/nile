@@ -11,7 +11,7 @@ module Api
       #    book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params.merge(author_id: author.id))
         if book.save 
-          render json: book, status: :created 
+          render json: BooksRepresenter.new(book).as_json, status: :created 
         else 
           render json: book.errors, status: :unproccessable_entity 
         end
