@@ -30,7 +30,7 @@ describe 'Books API', type: :request do
             expect(response.body).to eq({
                 'id' => 1,
                 'title' => 'Janware',
-                'author_name' => 'Jon doe'
+                'author_name' => 'Jon doel'
             })
         end
 
