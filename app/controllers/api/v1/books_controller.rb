@@ -7,6 +7,7 @@ module Api
       end 
       
       def create
+        author = Author.create(auther_params)
       #    book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params)
         if book.save 
@@ -25,6 +26,10 @@ module Api
 
       def book_params
         params.require(:book).permit(:title, :author)
+      end
+
+      def auther_params
+        params.require(:author).permit(:first_name, :last_name)
       end
     end
   end
