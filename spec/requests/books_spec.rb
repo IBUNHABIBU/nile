@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Books API', type: :request do 
     describe 'Get /books' do 
-        
+          let(:author) { create(:author) }
+          let(:book) { build(:book) }
         it 'returns all book' do
             get '/api/v1/books'
             expect(response).to have_http_status(:success)
@@ -13,9 +14,6 @@ describe 'Books API', type: :request do
             expect(response.body.size).to eq(2)
         end
         it 'returns number of book' do
-            FactoryBot.create(:book, title: "Jon oke")
-            FactoryBot.create(:book, title: "Manjegeka")
-            FactoryBot.create(:author,first_name: "Manjegeka", last_name: "Manjegeka")
             get '/api/v1/books'
             expect(JSON.parse(response.body).size).to eq(2)
         end
@@ -23,19 +21,19 @@ describe 'Books API', type: :request do
 
     describe 'POST /books' do 
         it 'should create a new book' do
-            post '/api/v1/books', params: {book: { title: "Janware", author: "Denis"} }
+            post '/api/v1/books', params: {book: { title: "Janware"} }
             expect(response).to have_http_status(:created)
         end
 
         it 'should count no of books book' do
             expect{
-              post '/api/v1/books', params: {book: { title: "Janware", author: "Denis"} }
+              post '/api/v1/books', params: {book: { title: "Janware"} }
             }.to change { Book.count }.from(0).to(1)
         end
     end
 
     describe 'DELETE /books/:id' do 
-        let(:book) { FactoryBot.create(:book, title: "Jononi oke", author: "Maajuto") }
+        let(:book) { FactoryBot.create(:book, title: "Jononi oke") }
         it 'should delete a selected book' do
             delete "/api/v1/books/#{book.id}"
             expect(response).to have_http_status(:no_content)
