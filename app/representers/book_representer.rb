@@ -10,6 +10,7 @@ class BookRepresenter
      author_name: author_name(book)
    }
  end
+ 
  private 
 
  attr_reader :book 
