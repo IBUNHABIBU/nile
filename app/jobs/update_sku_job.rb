@@ -1,7 +1,7 @@
 class UpdateSkuJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform(book)
     # Do something later
     uri = URI('http://localhost:4567/updat_sku')
     req = Net::HTTP::Post.new(uri, 'Content-type' => 'application/json')

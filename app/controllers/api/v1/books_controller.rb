@@ -10,7 +10,8 @@ module Api
       def create
         # author = Author.create!(auther_params)
       #    book = Book.new(title: params[:title], author: params[:author])
-        book = Book.new(book_params.merge(author_id: author.id))
+        # book = Book.new(book_params.merge(author_id: author.id))
+        UpdateSkuJob.perform_later(book_params)
        
         raise 'exit'
 
