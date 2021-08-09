@@ -1,3 +1,4 @@
+require 'net/http'
 module Api 
   module V1  
    class BooksController < ApplicationController
@@ -10,6 +11,8 @@ module Api
         author = Author.create!(auther_params)
       #    book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params.merge(author_id: author.id))
+        uri = URI('http://localhost:4567/updat_sku')
+        Net::HTTP.get(uri)
         if book.save 
           render json: BookRepresenter.new(book).as_json, status: :created 
         else 
