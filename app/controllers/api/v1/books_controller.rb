@@ -11,13 +11,7 @@ module Api
         # author = Author.create!(auther_params)
       #    book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params.merge(author_id: author.id))
-        uri = URI('http://localhost:4567/updat_sku')
-        req = Net::HTTP::Post.new(uri, 'Content-type' => 'application/json')
-        req.body = { sku: 123, name: book_params[:name]}.to_json 
-        res = Net::HTTP.start(uri.host, uri.port) do |http|
-          http.request(req)
-        end
-
+       
         raise 'exit'
 
         if book.save 
