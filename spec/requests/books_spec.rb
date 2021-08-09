@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Books API', type: :request do 
     describe 'Get /books' do 
-          let(:author) { create(:author) }
-          let(:book) { build(:book) }
+        #   let(:author) { create(:author) }
+        #   let(:book) { build(:book) }
         it 'returns all book' do
             get '/api/v1/books'
             expect(response).to have_http_status(:success)
