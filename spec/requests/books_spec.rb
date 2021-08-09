@@ -4,6 +4,7 @@ describe 'Books API', type: :request do
     describe 'Get /books' do 
         #   let(:author) { create(:author) }
         #   let(:book) { build(:book) }
+        let(:author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
         it 'returns all book' do
             get '/api/v1/books'
             expect(response).to have_http_status(:success)
