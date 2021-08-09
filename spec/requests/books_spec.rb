@@ -4,10 +4,12 @@ describe 'Books API', type: :request do
     describe 'Get /books' do 
         #   let(:author) { create(:author) }
         #   let(:book) { build(:book) }
-        let(:author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
+        let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
+        let(:second_author) { FactoryBot.create(:author, first_name:"Umayya ewetu", last_name:"Umarai ako")}
 
-        bofore do 
-          FactoryBot.create(:book, title:"Jua limewaka", author: author)
+        before do 
+          FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
+          FactoryBot.create(:book, title:"limewaka", author: second_author)
         end
 
         it 'returns all book' do
