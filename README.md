@@ -13,5 +13,10 @@ How to remove column to a table
 I have learnt new concept which is controller representers
 
 ### curl command
+
+Our routes herer is resources :books
 1. `curl http://localhost:3000/api/v1/books` list all books
+2. `curl --request POST http://localhost:3000/api/v1/books` 
+3. `curl --header "Content-Type: application/json" --request POST --data '{"author": "Jumanne", title: "Prince" } http://localhost:3000/api/v1/books`
+2. `curl --request POST http://localhost:3000/api/v1/books` 
 
