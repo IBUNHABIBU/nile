@@ -12,3 +12,6 @@ How to remove column to a table
 
 I have learnt new concept which is controller representers
 
+### curl command
+1. `curl http://localhost:3000/api/v1/books` list all books
+
