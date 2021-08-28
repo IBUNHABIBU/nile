@@ -26,8 +26,6 @@ module Api
       def destroy
         Book.find(params[:id]).destroy!
         head :no_content 
-      rescue ActiveRecord::RecordNotDestroyed
-        render json: {}, status: :unproccessable_entity
       end
 
       private 
@@ -41,6 +39,7 @@ module Api
       end
 
       def not_destroyed 
+        render json: {}, status: :unproccessable_entity
       end
     end
   end
