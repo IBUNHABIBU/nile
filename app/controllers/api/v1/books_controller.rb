@@ -39,6 +39,9 @@ module Api
       def auther_params
         params.require(:author).permit(:first_name, :last_name)
       end
+
+      def not_destroyed 
+      end
     end
   end
 end
