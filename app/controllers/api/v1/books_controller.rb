@@ -2,6 +2,7 @@ require 'net/http'
 module Api 
   module V1  
    class BooksController < ApplicationController
+      rescue_from ActiveRecord:RecordNotDestroyed, with: :not_destroyed
       def index 
         books = Book.all 
         render json: BooksRepresenter.new(books).as_json
@@ -25,6 +26,8 @@ module Api
       def destroy
         Book.find(params[:id]).destroy!
         head :no_content 
+      rescue ActiveRecord::RecordNotDestroyed
+        render json: {}, status: :unproccessable_entity
       end
 
       private 
