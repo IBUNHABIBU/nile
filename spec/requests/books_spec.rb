@@ -15,7 +15,6 @@ describe 'Books API', type: :request do
         it 'returns all book' do
             get '/api/v1/books'
             expect(response).to have_http_status(:success)
-            expect(response.body.size).to eq(2)
         end
         it 'returns number of book' do
             get '/api/v1/books'
@@ -29,18 +28,20 @@ describe 'Books API', type: :request do
 
     describe 'POST /books' do 
         it 'should create a new book(book count 1)' do
-        expect{post '/api/v1/books', params: { 
+            # let(:book) { build(:book) }
+        res = post '/api/v1/books', params: { 
                 book: { title: "Janware"},
-            author: { first_name: "Jon", last_name: "doe"}
+            author: { first_name: "Jon", last_name: "doe" }
         }
-        }.to change{Book.count}.from(0).to(1)
-            expect(response).to have_http_status(:created)
-            expect(Author.count).to eq(1)
+        # }.to change{Book.count}.from(0).to(1)
+        #     expect(response).to have_http_status(:created)
+        #     expect(Author.count).to eq(1)
             # expect(JSON.parse(response.body)).to eq({
             #     'id' => 1,
             #     'title' => 'Janware',
             #     'author_name' => 'Jon doe'
             # })
+            puts res
         end
 
         it 'should count no of books book' do

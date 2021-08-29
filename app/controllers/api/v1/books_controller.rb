@@ -2,19 +2,18 @@ require 'net/http'
 module Api 
   module V1  
    class BooksController < ApplicationController
-      rescue_from ActiveRecord:RecordNotDestroyed, with: :not_destroyed
       def index 
         books = Book.all 
         render json: BooksRepresenter.new(books).as_json
       end 
       
       def create
-        # author = Author.create!(auther_params)
-      #    book = Book.new(title: params[:title], author: params[:author])
-        # book = Book.new(book_params.merge(author_id: author.id))
-        UpdateSkuJob.perform_later(book_params[:name])
+        author = Author.create!(auther_params)
+        #  book = Book.new(title: params[:title], author: params[:author])
+        book = Book.new(book_params.merge(author_id: author.id))
+        # UpdateSkuJob.perform_later(book_params[:name])
        
-        raise 'exit'
+        # raise 'exit'
 
         if book.save 
           render json: BookRepresenter.new(book).as_json, status: :created 
@@ -36,10 +35,6 @@ module Api
 
       def auther_params
         params.require(:author).permit(:first_name, :last_name)
-      end
-
-      def not_destroyed 
-        render json: {}, status: :unproccessable_entity
       end
     end
   end
