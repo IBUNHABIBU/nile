@@ -2,6 +2,7 @@ require 'net/http'
 module Api 
   module V1  
    class BooksController < ApplicationController
+      MAX_PAGINATION = 100
       def index 
         books = Book.limit(limit).offset(params[:offset]) 
         render json: BooksRepresenter.new(books).as_json
@@ -31,8 +32,8 @@ module Api
 
       def limit 
         [
-          params.fetch(:limit, 100).to_i,
-          100
+          params.fetch(:limit, MAX_PAGINATION).to_i,
+          MAX_PAGINATION
         ].min
       end
 
