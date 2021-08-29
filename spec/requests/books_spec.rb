@@ -39,6 +39,21 @@ describe 'Books API', type: :request do
                 },
             ])
         end
+        
+        it 'returns subset of books based on pagination' do
+            get '/api/v1/books', params: { limit: 1 }
+            expect(response).to have_http_status(:success)
+        end
+
+        it 'pagination show number of book' do
+            get '/api/v1/books', params: { limit: 1 }
+            expect(response_body.size).to eq(1)
+        end
+
+        it 'offset' do
+            get '/api/v1/books', params: { limit: 1, offset: 1 }
+            expect(response_body.size).to eq(1)
+        end
     end
 
     describe 'POST /books' do 
