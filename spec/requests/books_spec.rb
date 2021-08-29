@@ -2,12 +2,10 @@ require 'rails_helper'
 
 describe 'Books API', type: :request do 
     describe 'Get /books' do 
-          let(:author) { create(:author) }
-          let(:book) { build(:book) }
-          let(:first_author) {create(:first_author)}
-          let(:second_author) {create(:second_author)}
-        # let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
-        # let(:second_author) { FactoryBot.create(:author, first_name:"Umayya ewetu", last_name:"Umarai ako")}
+        #   let(:author) { create(:author) }
+        #   let(:book) { build(:book) }
+        let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
+        let(:second_author) { FactoryBot.create(:author, first_name:"ewetu", last_name:"ako")}
 
         before do 
           FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
