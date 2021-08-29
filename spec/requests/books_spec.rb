@@ -2,17 +2,15 @@ require 'rails_helper'
 
 describe 'Books API', type: :request do 
     describe 'Get /books' do 
-        #   let(:author) { create(:author) }
-        #   let(:book) { build(:book) }
+          let(:author) { create(:author) }
+          let(:book) { build(:book) }
         # let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
         # let(:second_author) { FactoryBot.create(:author, first_name:"Umayya ewetu", last_name:"Umarai ako")}
 
-        before do 
+        # before do 
         #   FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
         #   FactoryBot.create(:book, title:"limewaka", author: second_author)
-          let(:author) { create(:author) }
-          let(:book) { build(:book) }
-        end
+        # end
 
         it 'returns all book' do
             get '/api/v1/books'
@@ -29,8 +27,8 @@ describe 'Books API', type: :request do
     end
 
     describe 'POST /books' do 
+        let(:book) { build(:book) }
         it 'should create a new book(book count 1)' do
-            let(:book) { build(:book) }
         expect{post '/api/v1/books', params: { 
                 book: { id: 1, title: "Janware"},
             author: { id: 43, first_name: "Jon", last_name: "doe" }
