@@ -54,6 +54,11 @@ describe 'Books API', type: :request do
             get '/api/v1/books', params: { limit: 1, offset: 1 }
             expect(response_body.size).to eq(1)
         end
+
+        it 'has max limit of 100 books' do
+            expect(Book).to receive(:limit).with(100).and_call_original
+            get '/api/v1/books', params: { limit: 999} 
+        end
     end
 
     describe 'POST /books' do 

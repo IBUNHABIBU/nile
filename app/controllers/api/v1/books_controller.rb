@@ -3,7 +3,7 @@ module Api
   module V1  
    class BooksController < ApplicationController
       def index 
-        books = Book.limit(params[:limit]).offset(params[:offset]) 
+        books = Book.limit(limit).offset(params[:offset]) 
         render json: BooksRepresenter.new(books).as_json
       end 
       
@@ -28,6 +28,13 @@ module Api
       end
 
       private 
+
+      def limit 
+        [
+          params.fetch(:limit, 100).to_i,
+          100
+        ].min
+      end
 
       def book_params
         params.require(:book).permit(:title)
