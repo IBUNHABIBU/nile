@@ -37,9 +37,9 @@ describe 'Books API', type: :request do
             expect(response).to have_http_status(:created)
             expect(Author.count).to eq(1)
             expect(JSON.parse(response.body)).to eq({
-                'id' => book.id,
-                'title' => book.title,
-                'author_name' => author_name(book)
+                'id' => 1,
+                'title' => "January",
+                'author_name' => "Jon doe"
             })
             
         end
