@@ -17,16 +17,31 @@ describe 'Books API', type: :request do
         end
         it 'returns number of book' do
             get '/api/v1/books'
-            expect(response.body.size).to eq(2)
+            expect(response.body.size).to eq(121)
         end
         it 'returns number of book' do
             get '/api/v1/books'
             expect(JSON.parse(response.body).size).to eq(2)
         end
+
+        it 'return book in JSON format' do 
+            get '/api/v1/books'
+            expect(JSON.parse(response.body)).to eq([
+                {
+                    'id' => 208,
+                    'title' => "Jua limewaka",
+                    'author_name' => "Umayya Umarai"  
+                },
+                {
+                    'id' => 208,
+                    'title' => "limewaka",
+                    'author_name' => "ewetu ako"  
+                },
+            ])
+        end
     end
 
     describe 'POST /books' do 
-        let(:book) { build(:book) }
         it 'should create a new book(book count 1)' do
         expect{post '/api/v1/books', params: { 
                 book: { id: 1, title: "Janware"},
@@ -36,7 +51,7 @@ describe 'Books API', type: :request do
             expect(response).to have_http_status(:created)
             expect(Author.count).to eq(1)
             expect(JSON.parse(response.body)).to eq({
-                'id' => 1,
+                'id' => 208,
                 'title' => "Janware",
                 'author_name' => "Jon doe"
             })
