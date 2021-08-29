@@ -7,10 +7,12 @@ describe 'Books API', type: :request do
         # let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
         # let(:second_author) { FactoryBot.create(:author, first_name:"Umayya ewetu", last_name:"Umarai ako")}
 
-        # before do 
+        before do 
         #   FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
         #   FactoryBot.create(:book, title:"limewaka", author: second_author)
-        # end
+          let(:author) { create(:author) }
+          let(:book) { build(:book) }
+        end
 
         it 'returns all book' do
             get '/api/v1/books'
@@ -20,37 +22,37 @@ describe 'Books API', type: :request do
             get '/api/v1/books'
             expect(response.body.size).to eq(2)
         end
-        # it 'returns number of book' do
-        #     get '/api/v1/books'
-        #     expect(JSON.parse(response.body).size).to eq(2)
-        # end
+        it 'returns number of book' do
+            get '/api/v1/books'
+            expect(JSON.parse(response.body).size).to eq(2)
+        end
     end
 
     describe 'POST /books' do 
         it 'should create a new book(book count 1)' do
-            # let(:book) { build(:book) }
+            let(:book) { build(:book) }
         expect{post '/api/v1/books', params: { 
-                book: { title: "Janware"},
-            author: { first_name: "Jon", last_name: "doe" }
+                book: { id: 1, title: "Janware"},
+            author: { id: 43, first_name: "Jon", last_name: "doe" }
         }
         }.to change{Book.count}.from(0).to(1)
             expect(response).to have_http_status(:created)
             expect(Author.count).to eq(1)
             expect(JSON.parse(response.body)).to eq({
-                'id' => Book.id,
-                'title' => 'Janware',
-                'author_name' => 'Jon doe'
+                'id' => book.id,
+                'title' => book.title,
+                'author_name' => author_name(book)
             })
             
         end
 
         it 'should count no of books book' do
-            expect{
-              post '/api/v1/books', params: {
-                  book: { title: "Janware"},
-                  author: { first_name: "Jon", last_name: "doe"}
-                 }
-            }.to change { Book.count }.from(0).to(1)
+            # expect{
+            #   post '/api/v1/books', params: {
+            #       book: { title: "Janware"},
+            #       author: { first_name: "Jon", last_name: "doe"}
+            #      }
+            # }.to change { Book.count }.from(0).to(1)
         end
     end
 
