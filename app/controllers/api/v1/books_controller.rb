@@ -15,7 +15,9 @@ module Api
         # UpdateSkuJob.perform_later(book_params[:name])
        
         # raise 'exit'
-
+        uri = URI('http://localhost:4567/update_sku')
+        req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+        req.body = { sku: '123', name: book_params[:name]}.to_json
         if book.save 
           render json: BookRepresenter.new(book).as_json, status: :created 
         else 
