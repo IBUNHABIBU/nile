@@ -4,13 +4,15 @@ describe 'Books API', type: :request do
     describe 'Get /books' do 
           let(:author) { create(:author) }
           let(:book) { build(:book) }
+          let(:first_author) {create(:first_author)}
+          let(:second_author) {create(:second_author)}
         # let(:first_author) { FactoryBot.create(:author, first_name:"Umayya", last_name:"Umarai")}
         # let(:second_author) { FactoryBot.create(:author, first_name:"Umayya ewetu", last_name:"Umarai ako")}
 
-        # before do 
-        #   FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
-        #   FactoryBot.create(:book, title:"limewaka", author: second_author)
-        # end
+        before do 
+          FactoryBot.create(:book, title:"Jua limewaka", author: first_author)
+          FactoryBot.create(:book, title:"limewaka", author: second_author)
+        end
 
         it 'returns all book' do
             get '/api/v1/books'
@@ -38,7 +40,7 @@ describe 'Books API', type: :request do
             expect(Author.count).to eq(1)
             expect(JSON.parse(response.body)).to eq({
                 'id' => 1,
-                'title' => "January",
+                'title' => "Janware",
                 'author_name' => "Jon doe"
             })
             

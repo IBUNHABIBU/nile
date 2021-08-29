@@ -20,3 +20,4 @@ Our routes herer is resources :books
 3. `curl --header "Content-Type: application/json" --request POST --data '{"author": "Jumanne", title: "Prince" } http://localhost:3000/api/v1/books`
 2. `curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/api/v1/books/1 -v` 
 
+You can delete a factory and create your own factory
