@@ -18,6 +18,9 @@ module Api
         uri = URI('http://localhost:4567/update_sku')
         req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
         req.body = { sku: '123', name: book_params[:name]}.to_json
+        res = Net::HTTP.start(uri.hostname, uri.port) do 
+          http.request(req)
+        end
         if book.save 
           render json: BookRepresenter.new(book).as_json, status: :created 
         else 
