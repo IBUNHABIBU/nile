@@ -23,5 +23,5 @@ Model.inspect it gives all attributes of a model
 Our routes herer is resources :books
 1. `curl http://localhost:3000/api/v1/books` list all books
 2. `curl --request POST http://localhost:3000/api/v1/books -v` 
-3. `curl --header "Content-Type: application/json" --request POST --data '{"author": "Jumanne", title: "Prince" } http://localhost:3000/api/v1/books`
+3. `curl --header "Content-Type: application/json" --request POST --data '{"author": "Jumanne", title: "Prince" }' http://localhost:3000/api/v1/books`
 2. `curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/api/v1/books/1 -v` 
