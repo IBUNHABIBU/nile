@@ -20,6 +20,8 @@ Model.inspect it gives all attributes of a model
 
 `described_class.perform_now('eloquent ruby')`
 
+Another important tip I got is how to organize your test, controller test, request test, model test etc that is important, i.e the first describe block must mention the respective class eg model or controller
+
 ### curl command
 
 Our routes herer is resources :books
