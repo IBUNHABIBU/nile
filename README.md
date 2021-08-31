@@ -22,6 +22,8 @@ Model.inspect it gives all attributes of a model
 
 Another important tip I got is how to organize your test, controller test, request test, model test etc that is important, i.e the first describe block must mention the respective class eg model or controller
 
+in request spec we test all the http request and expect responses 
+
 ### curl command
 
 Our routes herer is resources :books
