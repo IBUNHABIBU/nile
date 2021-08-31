@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateSkuJob, type: :job do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'calls sku service with correct params' do 
+    described_class.perform_now('eloquent ruby')
+  end
 end

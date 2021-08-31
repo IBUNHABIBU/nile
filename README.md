@@ -18,6 +18,8 @@ You can delete a factory and create your own factory
 
 Model.inspect it gives all attributes of a model
 
+`described_class.perform_now('eloquent ruby')`
+
 ### curl command
 
 Our routes herer is resources :books
