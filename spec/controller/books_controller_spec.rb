@@ -10,7 +10,7 @@ RSpec.describe Api::V1::BooksController, type: :controller do
   describe 'POST create' do 
    let(:book_name) { 'Harry porter' }
    it 'calls updateSkuJob with correct params' do
-    expect(updateSkuJob).to receive(:perform_later).with(book_name)
+    expect(UpdateSkuJob).to receive(:perform_later).with(book_name)
     post :create, params: {
      author: { first_name: 'jk', last_name: 'rowling', age: 48 },
      book: { title: 'Harry porter' }

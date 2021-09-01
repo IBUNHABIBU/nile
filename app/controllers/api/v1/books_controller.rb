@@ -12,7 +12,7 @@ module Api
         # book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params.merge(author_id: author.id))
         UpdateSkuJob.perform_later(book_params[:title])
-       
+        
         # uri = URI('http://localhost:4567/update_sku')
         # req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
         # req.body = { sku: '123', name: book_params[:name]}.to_json
