@@ -5,8 +5,8 @@ module Api
       def create
        p params.require(:password).inspect 
        user = User.find_by(username: params.require(:username))
-       AuthenticationTokenService.call(user.id)
-       render json: { token: '123'}, status: :created 
+       toke = AuthenticationTokenService.call(user.id)
+       render json: { token: token }, status: :created 
       end
 
       private 
