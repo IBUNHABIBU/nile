@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe AuthenticationTokenService do
   describe '.call' do
+    let(:token) { described_class.call }
     it 'returns an authentication token' do
-      # hmac_secret = 'my$ecretK3y'
-      token = described_class.call
       decoded_token = JWT.decode(
         token,
         described_class::HMAC_SECRET,
