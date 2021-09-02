@@ -23,7 +23,7 @@ describe 'Authentication', type: :request do
    end
 
    it 'returns error when password is incorrect' do
-    post '/api/v1/authenticate', params: { username: user.username, password: '123'} 
+    post '/api/v1/authenticate', params: { username: user.username, password: 'ddoe'} 
      expect(response).to have_http_status(:unauthorized)
    end
   end
