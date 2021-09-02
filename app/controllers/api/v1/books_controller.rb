@@ -30,7 +30,8 @@ module Api
 
       private 
 
-      def authenticate_user 
+      def authenticate_user
+        token, _options = token_and_options(request) 
       end
 
       def limit 
