@@ -1,7 +1,10 @@
 module Api 
   module V1  
    class BooksController < ApplicationController
+      include ActionController::HttpAuthentication::Token
       MAX_PAGINATION = 100
+
+      before_action :authenticate_user, only: [:create, :destroy]
       def index 
         books = Book.limit(limit).offset(params[:offset]) 
         render json: BooksRepresenter.new(books).as_json
@@ -12,14 +15,7 @@ module Api
         # book = Book.new(title: params[:title], author: params[:author])
         book = Book.new(book_params.merge(author_id: author.id))
         UpdateSkuJob.perform_later(book_params[:title])
-        
-        # uri = URI('http://localhost:4567/update_sku')
-        # req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
-        # req.body = { sku: '123', name: book_params[:name]}.to_json
-        # res = Net::HTTP.start(uri.hostname, uri.port) do |http|
-        #   http.request(req)
-        # end
-        # raise 'exit'
+      
         if book.save 
           render json: BookRepresenter.new(book).as_json, status: :created 
         else 
@@ -33,6 +29,9 @@ module Api
       end
 
       private 
+
+      def authenticate_user 
+      end
 
       def limit 
         [
