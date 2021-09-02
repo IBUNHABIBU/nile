@@ -34,7 +34,9 @@ module Api
         token, _options = token_and_options(request) 
         raise token.inspect 
         user_id = AuthenticationTokenService.decode_token(token)
-        raise user_id.inspect
+        User.find(user_id)
+      rescue ActiveRecord::RecordNotFound
+        render status: :unauthorized
       end
 
       def limit 
