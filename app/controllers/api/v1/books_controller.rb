@@ -35,7 +35,7 @@ module Api
         raise token.inspect 
         user_id = AuthenticationTokenService.decode_token(token)
         User.find(user_id)
-      rescue ActiveRecord::RecordNotFound
+        rescue ActiveRecord::RecordNotFound
         render status: :unauthorized
       end
 

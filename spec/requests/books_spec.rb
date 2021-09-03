@@ -50,7 +50,7 @@ describe 'Books API', type: :request do
         expect{post '/api/v1/books', params: { 
                 book: { id: 1, title: "Janware"},
             author: { id: 43, first_name: "Jon", last_name: "doe" }
-        }, headers: { "Authorization" => "Bearer 123" }
+        }
         }.to change{Book.count}.from(0).to(1)
             expect(response).to have_http_status(:created)
             expect(Author.count).to eq(1)
